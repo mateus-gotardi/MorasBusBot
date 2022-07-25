@@ -1,5 +1,4 @@
 require('dotenv').config()
-process.env.NTBA_FIX_319 = 1;
 const { utcToZonedTime } = require('date-fns-tz')
 var opt = {polling:true};
 const telegramBot = require('node-telegram-bot-api'),
