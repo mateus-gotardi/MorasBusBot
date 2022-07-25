@@ -1,6 +1,6 @@
-require('dotenv').config()
+const dotenv = require('dotenv').config()
 const { utcToZonedTime } = require('date-fns-tz')
-var opt = {polling:true};
+var opt = { polling: true };
 const telegramBot = require('node-telegram-bot-api'),
     token = process.env.TELEGRAM_API,
     bot = new telegramBot(token, opt);
