@@ -1,7 +1,10 @@
 require('dotenv').config()
+process.env.NTBA_FIX_319 = 1;
+const { utcToZonedTime } = require('date-fns-tz')
+var opt = {polling:true};
 const telegramBot = require('node-telegram-bot-api'),
     token = process.env.TELEGRAM_API,
-    bot = new telegramBot(token, { polling: true });
+    bot = new telegramBot(token, opt);
 
 const horariosIdaSemana = ['06:30', '06:45', '06:50', '07:00', '07:10', '07:15', '07:20', '07:25', '07:25 #',
     '07:35', '07:40 #', '07:45', '08:00', '08:10', '08:20', '08:30', '08:40', '08:50', '09:00', '09:10', '09:20', '09:30',
@@ -23,17 +26,17 @@ const horariosIdaSabado = ['07:30', '08:30', '11:30', '13:30']
 
 const horariosVoltaSabado = ['10:00', '12:15', '14:00', '16:00', '18:00']
 
+bot.on("polling_error", console.log);
 bot.on('message', (msg) => {
     let userID = msg.chat.id,
         messageUser = msg.text.toLowerCase(),
         answer = ''
-    let date = new Date();
-    let dataAtual = date.toLocaleString('pt-BR', {
-        timeZone: 'America/Sao_Paulo',
-    })
-    let feira = dataAtual.getDay();
-    let horas = dataAtual.getHours();
-    let minutos = dataAtual.getMinutes();
+    let date = new Date()
+    const timeZone = 'America/Sao_Paulo'
+    const dataAtual = utcToZonedTime(date, timeZone)
+    let feira = dataAtual.getDay()
+    let horas = dataAtual.getHours()
+    let minutos = dataAtual.getMinutes()
     let listaProximos = []
     let validMessage = (message) => {
         if (message === 'ida' || message === 'volta') {
