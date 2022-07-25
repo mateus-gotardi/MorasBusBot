@@ -23,7 +23,10 @@ bot.on('message', (msg) => {
     let userID = msg.chat.id,
         messageUser = msg.text.toLowerCase(),
         answer = ''
-    let dataAtual = new Date();
+    let date = new Date();
+    let dataAtual = date.toLocaleString('pt-BR', {
+        timeZone: 'America/Sao_Paulo',
+    })
     let feira = dataAtual.getDay();
     let horas = dataAtual.getHours();
     let minutos = dataAtual.getMinutes();
