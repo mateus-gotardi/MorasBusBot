@@ -57,7 +57,7 @@ bot.on('message', (msg) => {
     } else {
         if (feira !== 0 && feira !== 6) {
             if (messageUser === 'ida') {
-                if (horas >= 22 && minutos > 50) {
+                if (horas >= 22 && minutos > 50 || horas < 06) {
                     listaProximos.push(horariosIdaSemana[0])
                 } else {
                     horariosIdaSemana.map((h) => {
@@ -72,7 +72,7 @@ bot.on('message', (msg) => {
                     })
                 }
             } else if (messageUser === 'volta') {
-                if (horas >= 23 && minutos > 45) {
+                if (horas >= 23 && minutos > 45 || horas < 7) {
                     listaProximos.push(horariosVoltaSemana[0])
                 } else {
                     horariosVoltaSemana.map((h) => {
