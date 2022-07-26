@@ -38,7 +38,7 @@ bot.on("polling_error", console.log);
 bot.on('message', (msg) => {
     let userID = msg.chat.id,
         messageUser = msg.text.toLowerCase(),
-        answer = 'só amanhã de manhã'
+        answer = ''
     let date = new Date()
     const timeZone = 'America/Sao_Paulo'
     const dataAtual = utcToZonedTime(date, timeZone)
